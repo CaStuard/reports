@@ -36,7 +36,7 @@ public class Templates {
 	public static final ComponentBuilder<?, ?> footerComponent;
 
 	static {
-		rootStyle           = stl.style().setPadding(2);
+		rootStyle           = stl.style().setPadding(4);
 		boldStyle           = stl.style(rootStyle).bold();
 		italicStyle         = stl.style(rootStyle).italic();
 		boldCenteredStyle   = stl.style(boldStyle)

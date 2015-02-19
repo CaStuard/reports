@@ -36,7 +36,7 @@ public class SampleReport {
 
 	private void build() {
 		StyleBuilder style = stl.style().setVerticalAlignment(VerticalAlignment.MIDDLE).setRadius(10)
-				.setBackgroundColor(new Color(109, 158, 235))
+				.setBackgroundColor(new Color(173, 216, 230))
 				.setLinePen(stl.pen().setLineColor(Color.LIGHT_GRAY));
 		RectangleBuilder background = cmp.rectangle().setStyle(style)
 				.setPrintWhenExpression(exp.printInOddRow());
