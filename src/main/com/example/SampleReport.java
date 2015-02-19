@@ -38,8 +38,8 @@ public class SampleReport {
 
 	private void build() {
 		StyleBuilder style = stl.style().setVerticalAlignment(VerticalAlignment.MIDDLE)
-				.setRadius(10).setBackgroundColor(new Color(173, 216, 230))
-				.setLinePen(stl.pen().setLineColor(Color.LIGHT_GRAY));
+				.setRadius(10).setBackgroundColor(new Color(226, 228, 255))
+				.setLinePen(stl.pen().setLineColor(Color.WHITE));
 		RectangleBuilder background = cmp.rectangle().setStyle(style)
 				.setPrintWhenExpression(exp.printInOddRow());
 
@@ -55,7 +55,7 @@ public class SampleReport {
 							col.column("Program Description", "programdescription",
 									type.stringType()).setHorizontalAlignment(
 									HorizontalAlignment.CENTER),
-							col.column("Start Date", "startdate", type.dateType())
+							col.column("Start Date", "startdate", type.stringType())
 									.setHorizontalAlignment(HorizontalAlignment.CENTER),
 							col.column("Status", "programstatus", type.stringType())
 									.setHorizontalAlignment(HorizontalAlignment.CENTER),
@@ -83,7 +83,7 @@ public class SampleReport {
 									.setHeight(35)))
 					.pageFooter(Templates.footerComponent)
 					.setDataSource(
-							"select concat(participant.name, ' ', participant.lastname) as participantname, program.description as programdescription, program.started as startdate, program.status as programstatus, (select count(task.id) from task where task.status = 'ASIGNED' and task.program_id = program.id) as asignedtasks, (select count(task.id) from task where task.status = 'STARTED' and task.program_id = program.id) as startedtasks, (select count(task.id) from task where task.status = 'IN_PROGRESS' and task.program_id = program.id) as inprogresstasks, (select count(task.id) from task where task.status = 'COMPLETED' and task.program_id = program.id) as completedtasks, count(task.id) as totaltasks from participant join program on participant.id = program.participant_id left join task on program.id = task.program_id group by participantname, programdescription, programstatus, startdate, program.id",
+							"select concat(participant.name, ' ', participant.lastname) as participantname, program.description as programdescription, to_char(program.started, 'yyyy/mm/dd') as startdate, program.status as programstatus, (select count(task.id) from task where task.status = 'ASIGNED' and task.program_id = program.id) as asignedtasks, (select count(task.id) from task where task.status = 'STARTED' and task.program_id = program.id) as startedtasks, (select count(task.id) from task where task.status = 'IN_PROGRESS' and task.program_id = program.id) as inprogresstasks, (select count(task.id) from task where task.status = 'COMPLETED' and task.program_id = program.id) as completedtasks, count(task.id) as totaltasks from participant join program on participant.id = program.participant_id left join task on program.id = task.program_id group by participantname, programdescription, programstatus, startdate, program.id",
 							connection).show();
 			// .toPdf(Exporters.pdfExporter(new File("asdasd.pdf")));
 		} catch (DRException e) {
