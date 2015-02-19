@@ -15,11 +15,9 @@ import net.sf.dynamicreports.report.builder.component.RectangleBuilder;
 import net.sf.dynamicreports.report.builder.style.StyleBuilder;
 import net.sf.dynamicreports.report.constant.HorizontalAlignment;
 import net.sf.dynamicreports.report.constant.ImageScale;
+import net.sf.dynamicreports.report.constant.VerticalAlignment;
 import net.sf.dynamicreports.report.exception.DRException;
 
-/**
- * @author Ricardo Mariaca (r.mariaca@dynamicreports.org)
- */
 public class SampleReport {
 	private Connection connection;
 
@@ -37,7 +35,7 @@ public class SampleReport {
 	}
 
 	private void build() {
-		StyleBuilder style = stl.style().setRadius(10)
+		StyleBuilder style = stl.style().setVerticalAlignment(VerticalAlignment.MIDDLE).setRadius(10)
 				.setBackgroundColor(new Color(109, 158, 235))
 				.setLinePen(stl.pen().setLineColor(Color.LIGHT_GRAY));
 		RectangleBuilder background = cmp.rectangle().setStyle(style)
@@ -55,17 +53,17 @@ public class SampleReport {
 									HorizontalAlignment.CENTER),
 							col.column("Id Number", "id_number", type.stringType())
 									.setHorizontalAlignment(HorizontalAlignment.CENTER))
-					.title(cmp.horizontalList().add(
-							cmp.image("src/resources/logo.png").setDimension(25, 25)
-									.setHorizontalAlignment(HorizontalAlignment.RIGHT),
+					.title(cmp.verticalList().add(
+							cmp.image("src/resources/logo.png")
+									.setHorizontalAlignment(HorizontalAlignment.CENTER).setDimension(50, 50),
 							Components
 									.text("Clients")
 									.setStyle(
 											Templates.bold18CenteredStyle.setForegroundColor(
-													new Color(0, 0, 255)).setBackgroundColor(
+													new Color(109, 158, 235)).setBackgroundColor(
 													new Color(255, 255, 255)))
-									.setHorizontalAlignment(HorizontalAlignment.LEFT)
-									.setHeight(50))).pageFooter(Templates.footerComponent)
+									.setHorizontalAlignment(HorizontalAlignment.CENTER)
+									.setHeight(35))).pageFooter(Templates.footerComponent)
 					.setDataSource("SELECT id, name, id_number FROM client", connection).show();
 			// .toPdf(Exporters.pdfExporter(new File("asdasd.pdf")));
 		} catch (DRException e) {
