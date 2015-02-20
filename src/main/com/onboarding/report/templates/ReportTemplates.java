@@ -1,5 +1,5 @@
 
-package com.example;
+package com.onboarding.report.templates;
 
 import static net.sf.dynamicreports.report.builder.DynamicReports.*;
 
@@ -17,7 +17,7 @@ import net.sf.dynamicreports.report.constant.HorizontalAlignment;
 import net.sf.dynamicreports.report.constant.VerticalAlignment;
 import net.sf.dynamicreports.report.definition.ReportParameters;
 
-public class Templates {
+public class ReportTemplates {
 	public static final StyleBuilder rootStyle;
 	public static final StyleBuilder boldStyle;
 	public static final StyleBuilder italicStyle;
@@ -89,7 +89,7 @@ public class Templates {
 		HyperLinkBuilder link = hyperLink("http://www.dynamicreports.org");
 		dynamicReportsComponent =
 		  cmp.horizontalList(
-		  	cmp.image(Templates.class.getResource("images/dynamicreports.png")).setFixedDimension(60, 60),
+		  	cmp.image(ReportTemplates.class.getResource("images/dynamicreports.png")).setFixedDimension(60, 60),
 		  	cmp.verticalList(
 		  		cmp.text("DynamicReports").setStyle(bold22CenteredStyle).setHorizontalAlignment(HorizontalAlignment.LEFT),
 		  		cmp.text("http://www.dynamicreports.org").setStyle(italicStyle).setHyperLink(link))).setFixedWidth(300);

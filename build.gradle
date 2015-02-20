@@ -32,9 +32,7 @@ dependencies {
 	compile 'net.sf.jasperreports:jasperreports:4.5.0'
 	compile 'net.sourceforge.dynamicreports:dynamicreports-core:4.0.0'
 	compile 'postgresql:postgresql:9.1-901-1.jdbc4'
-
-
-
+	compile 'org.slf4j:slf4j-log4j12:1.7.10'
 }
 
 tasks.withType(JavaCompile) {
